@@ -1,0 +1,33 @@
+from fastapi import Depends, FastAPI, HTTPException, status
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+
+from .database.database import get_db
+from .routes.auth import router as auth_router
+from .routes.competencies import router as competencies_router
+from .routes.skills import router as skills_router
+from .routes.users import router as users_router
+
+app = FastAPI(
+    title="SkillSync-AI API",
+    description="Backend API for the SIH 26101 AI-enabled Skill Intelligence and Learning Platform.",
+    version="1.0.0",
+)
+app.include_router(auth_router)
+app.include_router(skills_router)
+app.include_router(competencies_router)
+app.include_router(users_router)
+
+
+@app.get("/")
+def root() -> dict[str, str]:
+    return {"message": "SkillSync-AI API is running"}
+
+
+@app.get("/health")
+def health(db: Session = Depends(get_db)) -> dict[str, str]:
+    try:
+        db.execute(text("SELECT 1"))
+    except Exception:
+        raise HTTPException(status_code=status.HTTP_503_SERVICE_UNAVAILABLE, detail="Database unavailable")
+    return {"status": "healthy", "database": "connected"}
