@@ -1,19 +1,3 @@
-Absolutely. Since your teammate needs to **take the existing backend and build the frontend without getting confused**, the best approach is to put a clear `README.md` inside the repository explaining:
-
-* What the project is
-* What **you have completed**
-* Current backend APIs
-* Database flow
-* Authentication flow
-* What **she needs to build**
-* Commands to run the project
-* How React connects to FastAPI
-* API request/response examples
-* Git workflow
-* What is coming next
-
-Below is a ready-to-use README. You can replace your current root `README.md` with this.
-
 ````markdown
 # SkillSync-AI
 
