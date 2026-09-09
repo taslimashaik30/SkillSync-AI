@@ -5,7 +5,9 @@ from sqlalchemy.orm import Session
 from .database.database import get_db
 from .routes.auth import router as auth_router
 from .routes.competencies import router as competencies_router
+from .routes.skill_gaps import router as skill_gaps_router
 from .routes.skills import router as skills_router
+from .routes.recommendations import router as recommendations_router
 from .routes.users import router as users_router
 
 app = FastAPI(
@@ -16,6 +18,8 @@ app = FastAPI(
 app.include_router(auth_router)
 app.include_router(skills_router)
 app.include_router(competencies_router)
+app.include_router(skill_gaps_router)
+app.include_router(recommendations_router)
 app.include_router(users_router)
 
 
