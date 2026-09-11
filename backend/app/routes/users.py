@@ -4,9 +4,9 @@ from sqlalchemy.orm import Session
 
 from ..core.dependencies import get_current_user
 from ..database.database import get_db
-from ..models import EmployeeSkill, Skill, User
+from ..models import AssessmentResult, EmployeeSkill, LearningHistory, Skill, User
 from ..schemas.employee_skill import EmployeeSkillCreate, EmployeeSkillResponse, EmployeeSkillUpdate
-from ..schemas.user import UserProfileUpdate, UserResponse
+from ..schemas.user import UserProfileUpdate, UserResponse, UserStatsResponse
 
 router = APIRouter(prefix="/api/users", tags=["users"])
 
@@ -38,6 +38,46 @@ def update_my_profile(
     db.commit()
     db.refresh(current_user)
     return current_user
+
+
+@router.get("/me/stats", response_model=UserStatsResponse)
+def get_my_stats(
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db),
+) -> UserStatsResponse:
+    average_level = db.scalar(
+        select(func.avg(EmployeeSkill.proficiency_level)).where(
+            EmployeeSkill.user_id == current_user.id
+        )
+    )
+    courses_completed = db.scalar(
+        select(func.count(LearningHistory.id)).where(
+            LearningHistory.user_id == current_user.id,
+            LearningHistory.course_id.is_not(None),
+            LearningHistory.status == "completed",
+        )
+    )
+    courses_in_progress = db.scalar(
+        select(func.count(LearningHistory.id)).where(
+            LearningHistory.user_id == current_user.id,
+            LearningHistory.course_id.is_not(None),
+            LearningHistory.status == "in_progress",
+        )
+    )
+    assessments_taken = db.scalar(
+        select(func.count(AssessmentResult.id)).where(
+            AssessmentResult.user_id == current_user.id
+        )
+    )
+    # learning_history has completion/progress, but no elapsed-learning-time
+    # field. Course duration is catalogue metadata, not actual user time.
+    return UserStatsResponse(
+        average_competency=round(float(average_level or 0) * 20, 2),
+        courses_completed=int(courses_completed or 0),
+        courses_in_progress=int(courses_in_progress or 0),
+        hours_invested=0,
+        assessments_taken=int(assessments_taken or 0),
+    )
 
 
 @router.get("/me/skills", response_model=list[EmployeeSkillResponse])

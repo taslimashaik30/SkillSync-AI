@@ -1,0 +1,270 @@
+/* ========================================================
+   SKILLSYNC-AI: LEARNER DASHBOARD STYLES (LIGHT GRAPE-WINE THEME)
+   ======================================================== */
+
+.dashboard-page {
+  position: relative;
+  z-index: 1;
+}
+
+.dashboard-header {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.dashboard-header .greeting {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.35rem);
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.15;
+}
+
+.dashboard-header .sub {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.35rem;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 2.1fr 1.1fr;
+  gap: 1.75rem;
+}
+
+.main-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+.side-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Card Section Inner Headings */
+.section {
+  padding: 1.75rem;
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.375rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-head h3, .section-head h4 {
+  font-family: var(--font-serif);
+  color: var(--text-primary);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.section-head small {
+  color: var(--accent-wine);
+  font-size: 0.78125rem;
+  font-weight: 600;
+}
+
+.section-sub {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 1.5rem 0 0.875rem;
+}
+
+/* Progress Overview */
+.progress-overview {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 1.25rem;
+  background: var(--bg-surface-elevated);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.progress-stats {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.progress-stats .stat {
+  text-align: center;
+}
+
+.progress-stats .stat-num {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--accent-wine);
+  line-height: 1.1;
+}
+
+.progress-stats .stat-label {
+  font-size: 0.71875rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  margin-top: 0.25rem;
+}
+
+/* Continue Learning List */
+.continue-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.continue-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding: 1.125rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.25s ease;
+}
+
+.continue-item:hover {
+  border-color: var(--border-medium);
+  transform: translateY(-2px);
+  background: var(--bg-surface-hover);
+}
+
+/* Path List on Dashboard */
+.path-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.path-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-lg);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.path-row:hover {
+  border-color: var(--border-medium);
+}
+
+.path-row.completed {
+  border-color: rgba(61, 139, 104, 0.25);
+  background: rgba(61, 139, 104, 0.04);
+}
+
+.path-row.active {
+  border-color: var(--border-gold);
+  background: rgba(238, 194, 152, 0.12);
+  box-shadow: 0 4px 18px rgba(50, 15, 30, 0.04);
+}
+
+.step-index {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(238, 194, 152, 0.2);
+  border: 1px solid rgba(238, 194, 152, 0.35);
+  color: var(--text-primary);
+  font-weight: 700;
+  font-size: 0.8125rem;
+}
+
+.path-row.completed .step-index {
+  background: var(--status-success-bg);
+  border-color: rgba(61, 139, 104, 0.3);
+  color: var(--status-success);
+}
+
+/* Course Shelf */
+.course-shelf {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.125rem;
+}
+
+/* Recommendations in Sidebar */
+.rec-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.rec-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: all 0.2s ease;
+}
+
+.rec-item:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-surface-hover);
+}
+
+/* Assistant Compact */
+.assistant-compact {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, rgba(238, 194, 152, 0.16), rgba(184, 93, 119, 0.12));
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-xl);
+}
+
+/* Responsive */
+@media (max-width: 1080px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  .course-shelf {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .course-shelf {
+    grid-template-columns: 1fr;
+  }
+  .progress-overview {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .progress-stats {
+    justify-content: space-between;
+  }
+}

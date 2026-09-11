@@ -29,3 +29,11 @@ class UserProfileUpdate(BaseModel):
         if not value:
             raise ValueError("must not be blank")
         return value
+
+
+class UserStatsResponse(BaseModel):
+    average_competency: float = Field(ge=0, le=100)
+    courses_completed: int = Field(ge=0)
+    courses_in_progress: int = Field(ge=0)
+    hours_invested: float = Field(ge=0)
+    assessments_taken: int = Field(ge=0)
